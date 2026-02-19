@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Language } from '../../services/language';
 
 @Component({
@@ -8,6 +8,7 @@ import { Language } from '../../services/language';
 })
 export class LangSelector {
   langService = inject(Language);
+  currentLang = computed(() => this.langService.currentLang());
 
   languages = signal([
     { code: 'en', flag: '🇺🇸' },
