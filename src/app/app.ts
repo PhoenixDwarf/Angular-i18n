@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('i18n-app');
+  cookie = inject(SsrCookieService);
+
+  constructor() {
+    console.log({ cookie: this.cookie.get('lang') });
+  }
 }
