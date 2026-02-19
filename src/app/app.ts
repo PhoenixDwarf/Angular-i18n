@@ -10,12 +10,11 @@ import { Language } from './services/language';
   styleUrl: './app.css',
 })
 export class App {
-  cookie = inject(SsrCookieService);
-  langService = inject(Language);
+  private readonly cookie = inject(SsrCookieService);
+  private readonly langService = inject(Language);
 
   constructor() {
     const lang = this.cookie.check('lang') ? this.cookie.get('lang') : 'en';
-    console.log({ lang });
     this.langService.changeLang(lang);
   }
 }
