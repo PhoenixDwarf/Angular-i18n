@@ -8,7 +8,7 @@ import { SsrCookieService } from 'ngx-cookie-service-ssr';
 export class Language {
   cookie = inject(SsrCookieService);
   translate = inject(TranslateService);
-  currentLang = signal('');
+  currentLang = signal(this.cookie.check('lang') ? this.cookie.get('lang') : 'en');
 
   changeLang(lang: string) {
     this.cookie.set('lang', lang);
